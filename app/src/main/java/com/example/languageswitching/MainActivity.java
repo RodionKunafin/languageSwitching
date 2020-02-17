@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -34,11 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*btnOk.setOnClickListener(new View.OnClickListener() {
+        btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                     Locale locale = new Locale("ru");
                     Configuration config = new Configuration();
                     config.setLocale(locale);
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     recreate();
 
             }
-        });*/
+        });
 
     }
 
@@ -57,18 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
                 String [] languages = getResources().getStringArray(R.array.languages);
-                btnOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Locale locale = new Locale("ru");
-                        Configuration config = new Configuration();
-                        config.setLocale(locale);
-                        getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                        recreate();
-                    }
-                });
+
             }
 
             @Override
