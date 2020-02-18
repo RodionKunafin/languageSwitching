@@ -30,7 +30,6 @@
 
     <TextView
         android:id="@+id/textView"
-        android:text="Проверка языка"
         android:layout_width="259dp"
         android:layout_height="97dp"
         android:layout_marginBottom="296dp"

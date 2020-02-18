@@ -1,5 +1,6 @@
 package com.example.languageswitching;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
@@ -34,15 +35,24 @@ public class MainActivity extends AppCompatActivity {
         initSpinner();
 
 
-
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Locale locale = new Locale("ru");
-                    Configuration config = new Configuration();
-                    config.setLocale(locale);
-                    getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                    recreate();
+                spinner.setSelection(1);
+                Locale locale = new Locale("en");
+                Configuration config = new Configuration();
+                config.setLocale(locale);
+                getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                setTitle(R.string.textView);
+                recreate();
+
+                spinner.setSelection(0);
+                Locale locale1 = new Locale("ru");
+                Configuration config1 = new Configuration();
+                config.setLocale(locale1);
+                getResources().updateConfiguration(config1, getBaseContext().getResources().getDisplayMetrics());
+                setTitle(R.string.textView);
+                recreate();
 
             }
         });
@@ -50,14 +60,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSpinner() {
-        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this,R.array.languages,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
-                String [] languages = getResources().getStringArray(R.array.languages);
+                String[] languages = getResources().getStringArray(R.array.languages);
+
 
             }
 
