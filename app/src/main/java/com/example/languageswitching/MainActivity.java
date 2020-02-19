@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spinner;
     Button btnOk;
     TextView textView;
+    String[] mLanguage = {"en", "ru"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +41,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 spinner.setSelection(1);
+                mLanguage = new String[]{"en"};
                 Locale locale = new Locale("en");
                 Configuration config = new Configuration();
                 config.setLocale(locale);
                 getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                setTitle(R.string.textView);
+                textView.setText(R.string.textView);
                 recreate();
 
                 spinner.setSelection(0);
+                mLanguage = new String[]{"ru"};
                 Locale locale1 = new Locale("ru");
                 Configuration config1 = new Configuration();
                 config.setLocale(locale1);
                 getResources().updateConfiguration(config1, getBaseContext().getResources().getDisplayMetrics());
-                setTitle(R.string.textView);
+                textView.setText(R.string.textView);
                 recreate();
 
             }
