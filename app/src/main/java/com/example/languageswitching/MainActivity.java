@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spinner;
     Button btnOk;
     TextView textView;
+    String[] mLanguage = {"en", "ru"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,41 +34,21 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         initSpinner();
 
-
-
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Locale locale = new Locale("ru");
-                    Configuration config = new Configuration();
-                    config.setLocale(locale);
-                    getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                    recreate();
-
+                Locale locale = new Locale(mLanguage[spinner.getSelectedItemPosition()]);
+                Configuration config = new Configuration();
+                config.setLocale(locale);
+                getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                recreate();
             }
         });
-
     }
 
     private void initSpinner() {
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this,R.array.languages,android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View itemSelected, int selectedItemPosition, long selectedId) {
-                String [] languages = getResources().getStringArray(R.array.languages);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
     }
-
-
 }
