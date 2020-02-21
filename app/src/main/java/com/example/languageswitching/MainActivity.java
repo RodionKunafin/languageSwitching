@@ -15,11 +15,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private Spinner spinner;
-    Button btnOkForRu;
-    Button btnOkForEn;
+    Button btnOk;
+
     TextView textView;
     String[] mLanguage = {"ru", "en"};
-
 
 
     @Override
@@ -32,41 +31,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         spinner = findViewById(R.id.spinner);
-        btnOkForRu = findViewById(R.id.btnOkForRu);
-        btnOkForEn = findViewById(R.id.btnOkForEn);
+        btnOk = findViewById(R.id.btnOk);
         textView = findViewById(R.id.textView);
         initSpinner();
 
 
-        btnOkForRu.setOnClickListener(new View.OnClickListener() {
+        btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Locale locale = new Locale("ru");
+                Locale locale = new Locale(mLanguage[spinner.getSelectedItemPosition()]);
                 Configuration config = new Configuration();
                 config.setLocale(locale);
                 getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                spinner.setSelection(0);
-                mLanguage = new String[]{"ru"};
                 textView.setText(R.string.textView);
                 recreate();
 
             }
         });
-        btnOkForEn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Locale locale1 = new Locale("en");
-                Configuration config1 = new Configuration();
-                config1.setLocale(locale1);
-                getResources().updateConfiguration(config1, getBaseContext().getResources().getDisplayMetrics());
-                spinner.setSelection(1);
-                mLanguage = new String[]{"en"};
-                textView.setText(R.string.textView);
-                recreate();
-            }
-        });
-
     }
 
     private void initSpinner() {
